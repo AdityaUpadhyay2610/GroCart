@@ -119,8 +119,8 @@ app/
 1. **Clone** the repo:
 
    ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   cd <your-repo>
+   git clone https://github.com/AdityaUpadhyay2610/GroCart.git
+   cd GroCart
    ```
 2. Open in **Android Studio Jellyfish/Koala** or newer.
 3. Add `app/google-services.json` from Firebase console.
