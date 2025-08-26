@@ -92,7 +92,6 @@ fun FirstApp(
                                     fontSize = 26.sp,
                                     fontFamily = FontFamily.SansSerif,
                                     fontWeight = FontWeight.SemiBold,
-                                    color = Color.Black,
                                     modifier = Modifier.padding(start = 16.dp, top = 8.dp)
                                 )
                                 if (currentScreen == GroAppScreen.Cart) {
@@ -108,9 +107,9 @@ fun FirstApp(
 
                             // Right side: Logout
                             Row(
-                               modifier = Modifier.clickable{
-                                  groViewModel.setLogoutClicked(true)
-                               }
+                                modifier = Modifier.clickable{
+                                    groViewModel.setLogoutClicked(true)
+                                }
 
                             ) {
                                 Icon(
@@ -188,15 +187,15 @@ fun FirstApp(
 
             }
             if (logoutClicked){
-            AlertCheck(onYesButtonPressed = {
-                groViewModel.setLogoutClicked(false)
-                auth.signOut()
-                groViewModel.clearData()
+                AlertCheck(onYesButtonPressed = {
+                    groViewModel.setLogoutClicked(false)
+                    auth.signOut()
+                    groViewModel.clearData()
 
-            }, onNoButtonPressed = {
-                groViewModel.setLogoutClicked(false)
-            })
-        }
+                }, onNoButtonPressed = {
+                    groViewModel.setLogoutClicked(false)
+                })
+            }
         }
     }
 
@@ -228,7 +227,7 @@ fun FirstAppBar(navController: NavHostController,
             }
         ) {
             Icon(imageVector = Icons.Outlined.Home, contentDescription = "Home Icon")
-            Text(text = "Home", fontSize = 10.sp)
+            Text(text = "Home", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         }
 
         // Cart Button (Currently navigates to Start as Cart screen isn't implemented)
@@ -247,21 +246,21 @@ fun FirstAppBar(navController: NavHostController,
                     contentDescription = "Cart Icon"
                 )
                 if (cartItems.isNotEmpty())
-                Card (
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color.Red
-                    ),
-                    modifier = Modifier.align(alignment = Alignment.TopEnd)
+                    Card (
+                        colors = CardDefaults.cardColors(
+                            containerColor = Color.Red
+                        ),
+                        modifier = Modifier.align(alignment = Alignment.TopEnd)
 
-                ){
-                    Text(text = cartItems.size.toString(),
-                        color = Color.White,
-                        fontSize = 10.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        modifier = Modifier.padding(horizontal = 1.dp))
-                }
+                    ){
+                        Text(text = cartItems.size.toString(),
+                            color = Color.White,
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            modifier = Modifier.padding(horizontal = 1.dp))
+                    }
             }
-            Text(text = "Cart", fontSize = 10.sp)
+            Text(text = "Cart", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         }
     }
 }

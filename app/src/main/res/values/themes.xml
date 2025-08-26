@@ -2,4 +2,8 @@
 <resources>
 
     <style name="Theme.First" parent="android:Theme.Material.Light.NoActionBar" />
-</resources>
+    <!-- Base application theme. -->
+
+    </resources>
+
+

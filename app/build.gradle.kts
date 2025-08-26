@@ -52,6 +52,8 @@ android {
 dependencies {
     // Jetpack Compose BOM
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.material3)
+    implementation(libs.androidx.runtime.saveable)
     androidTestImplementation(platform(libs.androidx.compose.bom))
 
     // Core & Lifecycle
@@ -94,6 +96,10 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
 
     implementation("com.google.firebase:firebase-auth:24.0.1")
+    implementation("androidx.compose.material3:material3:1.2.1") // Use the latest stable version
+    implementation("androidx.compose.material:material-icons-core:1.6.7") // Or latest
+    implementation("androidx.compose.material:material-icons-extended:1.6.7") // Or latest
     implementation("com.google.firebase:firebase-database")
 }
+
 

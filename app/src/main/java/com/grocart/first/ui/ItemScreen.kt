@@ -41,7 +41,7 @@ import com.grocart.first.R
 fun ItemScreen(
     groViewModel: GroViewModel,
     items : List<InternetItem>
-    ) {
+) {
     val groUiState by groViewModel.uiState.collectAsState() // Collect UI state from ViewModel
     val selectedCategory = stringResource(groUiState.selectedCategory) // Get selected category from UI state
     val database = items.filter {
@@ -90,18 +90,18 @@ fun ItemScreen(
 fun InternetItemScreen(
     groViewModel: GroViewModel,
     itemUiState: GroViewModel.ItemUiState
-    ){
-   when(itemUiState){
-       is GroViewModel.ItemUiState.Loading -> {
-           LoadingScreen()
-       }
-       is GroViewModel.ItemUiState.Success -> {
-           ItemScreen(groViewModel = groViewModel, items = itemUiState.items)
-       }
-       else -> {
-           ErrorScreen(gromViewModel = groViewModel)
-       }
-   }
+){
+    when(itemUiState){
+        is GroViewModel.ItemUiState.Loading -> {
+            LoadingScreen()
+        }
+        is GroViewModel.ItemUiState.Success -> {
+            ItemScreen(groViewModel = groViewModel, items = itemUiState.items)
+        }
+        else -> {
+            ErrorScreen(gromViewModel = groViewModel)
+        }
+    }
 
 }
 // Composable function to display individual item card with image, price, quantity, and add-to-cart button
@@ -116,11 +116,12 @@ fun ItemCard(
     val context = LocalContext.current // Get current context for Toast
 
     // Outer column for arranging all item content
-    Column(modifier = Modifier.width(150.dp)) {
+    Column(modifier = Modifier.width(150.dp).padding(5.dp)) {
         // Card for item image and discount tag
         Card(
             colors = CardDefaults.cardColors(
-                containerColor = Color(249,219,242,50))
+                containerColor = Color(249,219,242,50)),
+
         ) {
             Box {
                 // Item image
@@ -128,7 +129,7 @@ fun ItemCard(
                     model = imageResourceId,
                     contentDescription = stringResourceId,
                     modifier = Modifier.fillMaxWidth()
-                    .height((110.dp))
+                        .height((110.dp))
                 )
 
                 // Discount label positioned at top-end
@@ -145,7 +146,7 @@ fun ItemCard(
                         Text(
                             text = "25% off", // Static discount text
                             color = Color.White,
-                            fontSize = 8.sp,
+                            fontSize = 15.sp,
                             modifier = Modifier.padding(horizontal = 5.dp, vertical = 2.dp)
                         )
                     }
@@ -156,7 +157,8 @@ fun ItemCard(
         // Item name
         Text(
             text =stringResourceId, // Display item name
-            fontSize = 12.sp,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(vertical = 5.dp),
             maxLines = 1,
             textAlign = TextAlign.Left
@@ -173,7 +175,7 @@ fun ItemCard(
                 // Original price with strike-through
                 Text(
                     text = "Rs . $itemPrice",
-                    fontSize = 6.sp,
+                    fontSize = 12.sp,
                     maxLines = 1,
                     textAlign = TextAlign.Center,
                     color = Color(109, 109, 109, 255),
@@ -182,7 +184,7 @@ fun ItemCard(
                 // Discounted price (75% of original)
                 Text(
                     text = "Rs. ${itemPrice * 75 / 100}",
-                    fontSize = 10.sp,
+                    fontSize = 20.sp,
                     maxLines = 1,
                     textAlign = TextAlign.Center,
                     color = Color(255, 116, 105, 255)
@@ -192,7 +194,8 @@ fun ItemCard(
             // Quantity label
             Text(
                 text = itemQuantity,
-                fontSize = 14.sp,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.ExtraBold,
                 maxLines = 1,
                 color = Color(114, 114, 114, 255)
             )
@@ -226,14 +229,14 @@ fun ItemCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(24.dp)
-                    .padding(horizontal = 5.dp),
+                    .padding(horizontal = 8.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 // Button text
                 Text(
                     text = "Add to Cart",
-                    fontSize = 11.sp,
+                    fontSize = 21.sp,
                     color = Color.White
                 )
             }

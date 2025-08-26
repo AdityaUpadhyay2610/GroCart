@@ -49,7 +49,7 @@ fun CartScreen(
     val cartItems by groViewModel.cartItems.collectAsState()
     val cartItemWithQuantity = cartItems.groupBy { it }
         .map {
-            (item,cartItems) ->
+                (item,cartItems) ->
             InternetItemWithQuantity (item,cartItems.size)
         }
     if (cartItems.isNotEmpty()){
@@ -80,7 +80,7 @@ fun CartScreen(
             val deliveryFee = 30
             val grandTotal = totalPrice + handlingCharge + deliveryFee
             item {
-                Card(colors = CardDefaults.cardColors(containerColor = Color(236,236,236,255)),
+                Card(
                     modifier = Modifier.fillMaxWidth()){
                     Column (
                         modifier = Modifier.padding(10.dp)
@@ -153,7 +153,7 @@ fun CartCard(cartItem: InternetItem,
                 fontSize = 15.sp,
                 maxLines = 1,
 
-            )
+                )
 
         }
         Column(
@@ -174,7 +174,7 @@ fun CartCard(cartItem: InternetItem,
                 maxLines = 1,
                 color = Color(254,116,105,255)
 
-                )
+            )
 
         }
         Column (

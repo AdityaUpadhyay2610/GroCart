@@ -117,14 +117,14 @@ fun OtpBox(otp : String,
             }
 
         }
-        
+
     }
 }
 private fun signInWithPhoneAuthCredential(
     credential: PhoneAuthCredential,
     context : Context,
     groViewModel: GroViewModel
-    ) {
+) {
     auth.signInWithCredential(credential)
         .addOnCompleteListener(context as Activity) { task ->
             if (task.isSuccessful) {

@@ -88,7 +88,7 @@ class GroViewModel: ViewModel() {
 
     fun setUser(user: FirebaseUser?)
     {
-     _user.value = user
+        _user.value = user
     }
     fun clearData(){
         _user.value = null
@@ -134,11 +134,11 @@ class GroViewModel: ViewModel() {
         myRef.push().setValue(item)
 
     }
-   private fun fillCartItems(){
+    private fun fillCartItems(){
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-               _cartItems.value = emptyList()
+                _cartItems.value = emptyList()
 
                 for (childSnapshot in dataSnapshot.children) {
                     val item = childSnapshot.getValue(InternetItem::class.java)
@@ -155,27 +155,27 @@ class GroViewModel: ViewModel() {
         })
     }
     fun removeFromCart(oldItem: InternetItem){
-       myRef.addListenerForSingleValueEvent(object : ValueEventListener{
-           override fun onDataChange(dataSnapshot: DataSnapshot) {
+        myRef.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
 
 
-               for (childSnapshot in dataSnapshot.children) {
-                   var itemRemoved = false
-                   val item = childSnapshot.getValue(InternetItem::class.java)
-                   item?.let{
-                      if(oldItem.itemName == it.itemName && oldItem.itemCategory == it.itemCategory){
-                          childSnapshot.ref.removeValue()
-                          itemRemoved = true
-                      }
-                   }
-                   if(itemRemoved) break
-               }
-           }
+                for (childSnapshot in dataSnapshot.children) {
+                    var itemRemoved = false
+                    val item = childSnapshot.getValue(InternetItem::class.java)
+                    item?.let{
+                        if(oldItem.itemName == it.itemName && oldItem.itemCategory == it.itemCategory){
+                            childSnapshot.ref.removeValue()
+                            itemRemoved = true
+                        }
+                    }
+                    if(itemRemoved) break
+                }
+            }
 
-           override fun onCancelled(error: DatabaseError) {
+            override fun onCancelled(error: DatabaseError) {
 
-           }
-       })
+            }
+        })
 
     }
     fun updateClickText(updatedText: String) {
@@ -199,7 +199,7 @@ class GroViewModel: ViewModel() {
         _isVisible.value = false
     }
     fun getFirstItem(){
-       internetJob = viewModelScope.launch {
+        internetJob = viewModelScope.launch {
             try {
                 val listResult = FirstApi.retrofitService.getItems()
                 itemUiState = ItemUiState.Success(listResult)
@@ -223,5 +223,4 @@ class GroViewModel: ViewModel() {
         fillCartItems()
     }
 }
-
 
